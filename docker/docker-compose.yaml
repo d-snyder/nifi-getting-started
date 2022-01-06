@@ -1,0 +1,22 @@
+version: '3.5'
+services:
+  nifi1:
+    image: apache/nifi:latest
+    ports:
+      - "8443:8443"
+    environment:
+      - SINGLE_USER_CREDENTIALS_USERNAME=admin
+      - SINGLE_USER_CREDENTIALS_PASSWORD=Mustbe12characters
+  nifi-registry1:
+    image: apache/nifi-registry:latest
+    ports:
+      - "18080:18080"
+  minio:
+    image: quay.io/minio/minio:latest
+    command: server /data --console-address ":9001"
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
