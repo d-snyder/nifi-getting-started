@@ -1,14 +1,15 @@
 version: '3.5'
 services:
   nifi1:
-    image: apache/nifi:latest
+    image: apache/nifi:1.15.2
     ports:
       - "8443:8443"
     environment:
       - SINGLE_USER_CREDENTIALS_USERNAME=admin
       - SINGLE_USER_CREDENTIALS_PASSWORD=Mustbe12characters
+      - NIFI_SENSITIVE_PROPS_KEY=1234abcdf3232xb2334b4b4b
   nifi-registry1:
-    image: apache/nifi-registry:latest
+    image: apache/nifi-registry:1.15.2
     ports:
       - "18080:18080"
   minio:
